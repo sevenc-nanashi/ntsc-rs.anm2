@@ -1,0 +1,15 @@
+[package]
+name = "ntscrs-auf2"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+aviutl2 = { git = "https://github.com/sevenc-nanashi/aviutl2-rs" }
+dashmap = "6.1.0"
+ntscrs = { git = "https://github.com/ntsc-rs/ntsc-rs" }
+
+[patch.crates-io]
+fearless_simd = { git = "https://github.com/valadaptive/fearless_simd/", branch = "ntsc-rs" }
