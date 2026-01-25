@@ -5,7 +5,7 @@
 --group:
 --PARAMS
 --filter
---description:VHS-like effect, powered by ntsc-rs v{{ntscrs_version}}, written in Rust / v{{mod2_version}} / https://github.com/sevenc-nanashi/ntsc-rs.auf2
+--description:VHS-like effect, powered by ntsc-rs v{{ntscrs_version}}, written in Rust / v{{mod2_version}} / https://github.com/sevenc-nanashi/ntsc-rs.anm2
 
 local function to_json(v)
   if type(v) == "number" then
