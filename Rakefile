@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "bundler/setup"
-require "fileutils"
 
 desc "ビルドします"
 task :build => [:build_script] do
