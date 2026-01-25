@@ -2,15 +2,18 @@ GEM
   remote: https://rubygems.org/
   specs:
     rubyzip (3.2.2)
+    tomlrb (2.0.4)
 
 PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
   rubyzip (~> 3.2)
+  tomlrb (~> 2.0)
 
 CHECKSUMS
   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
+  tomlrb (2.0.4) sha256=262f77947ac3ac9b3366a0a5940ecd238300c553e2e14f22009e2afcd2181b99
 
 BUNDLED WITH
   4.0.3

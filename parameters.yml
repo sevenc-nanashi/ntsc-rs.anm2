@@ -1,0 +1,493 @@
+parameters:
+  seed:
+    type: track
+    label: "シード"
+    default: 0
+    min: 0
+    max: 10000
+    step: 1.0
+  field:
+    type: select
+    label: "フィールド"
+    default: InterleavedUpper
+    items:
+      - label: "交互"
+        value: Alternating
+      - label: "上位のみ"
+        value: Upper
+      - label: "下位のみ"
+        value: Lower
+      - label: "両方"
+        value: Both
+      - label: "交互：上位から"
+        value: InterleavedUpper
+      - label: "交互：下位から"
+        value: InterleavedLower
+  filter_type:
+    type: select
+    label: "ローパスフィルター"
+    default: Butterworth
+    items:
+      - label: "Constant K"
+        value: ConstantK
+      - label: "Butterworth"
+        value: Butterworth
+  input_luma_filter:
+    type: select
+    label: "入力輝度フィルター"
+    default: Notch
+    items:
+      - label: "ノッチ"
+        value: Notch
+      - label: "ボックス"
+        value: Box
+      - label: "なし"
+        value: None
+  chroma_lowpass_in:
+    type: select
+    label: "入力クロマローパス"
+    default: Full
+    items:
+      - label: "フル"
+        value: Full
+      - label: "ライト"
+        value: Light
+      - label: "なし"
+        value: None
+  composite_sharpening:
+    type: track
+    label: "コンポジット信号シャープ"
+    default: 1.0
+    min: -1.0
+    max: 2.0
+    step: 0.001
+  composite_noise:
+    type: group
+    opened: false
+    label: "コンポジットノイズ"
+    parameters:
+      composite_noise_enabled:
+        type: check
+        label: "有効"
+        default: true
+      composite_noise_intensity:
+        type: track
+        label: "強度"
+        default: 0.05
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      composite_noise_frequency:
+        type: track
+        label: "周波数"
+        default: 0.5
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      composite_noise_detail:
+        type: track
+        label: "細かさ"
+        default: 1
+        min: 1
+        max: 5
+        step: 1.0
+  snow:
+    type: track
+    label: "スノーノイズ"
+    default: 0.025
+    min: 0.0
+    max: 10000.0
+    step: 0.001
+  snow_anisotropy:
+    type: track
+    label: "スノーノイズ：異方性"
+    default: 0.5
+    min: 0.0
+    max: 1.0
+    step: 0.001
+  video_scanline_phase_shift:
+    type: select
+    label: "走査線位相シフト"
+    default: Degrees180
+    items:
+      - label: "0度"
+        value: Degrees0
+      - label: "90度"
+        value: Degrees90
+      - label: "180度"
+        value: Degrees180
+      - label: "270度"
+        value: Degrees270
+  video_scanline_phase_shift_offset:
+    type: track
+    label: "走査線位相シフトオフセット"
+    default: 0
+    min: 0
+    max: 3
+    step: 1.0
+  chroma_demodulation_filter:
+    type: select
+    label: "クロマ復調フィルター"
+    default: Notch
+    items:
+      - label: "ボックス"
+        value: Box
+      - label: "ノッチ"
+        value: Notch
+      - label: "1ラインコム"
+        value: OneLineComb
+      - label: "2ラインコム"
+        value: TwoLineComb
+  luma_smear:
+    type: track
+    label: "明度のにじみ"
+    default: 0.5
+    min: 0.0
+    max: 1.0
+    step: 0.001
+  head_switching:
+    type: group
+    opened: false
+    label: "ヘッド切り替え"
+    parameters:
+      head_switching_enabled:
+        type: check
+        label: "有効"
+        default: true
+      head_switching_height:
+        type: track
+        label: "高さ"
+        default: 8
+        min: 0
+        max: 24
+        step: 1.0
+      head_switching_offset:
+        type: track
+        label: "オフセット"
+        default: 3
+        min: 0
+        max: 24
+        step: 1.0
+      head_switching_horizontal_shift:
+        type: track
+        label: "水平シフト"
+        default: 72.0
+        min: -100.0
+        max: 100.0
+        step: 0.001
+  head_switching_mid_line:
+    type: group
+    opened: false
+    label: "ヘッド切り替え：途中開始"
+    parameters:
+      head_switching_mid_line_enabled:
+        type: check
+        label: "有効"
+        default: true
+      head_switching_mid_line_position:
+        type: track
+        label: "位置"
+        default: 0.95
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      head_switching_mid_line_jitter:
+        type: track
+        label: "揺れ"
+        default: 0.03
+        min: 0.0
+        max: 1.0
+        step: 0.001
+  tracking_noise:
+    type: group
+    opened: false
+    label: "トラッキングノイズ"
+    parameters:
+      tracking_noise_enabled:
+        type: check
+        label: "有効"
+        default: true
+      tracking_noise_height:
+        type: track
+        label: "高さ"
+        default: 12
+        min: 0
+        max: 120
+        step: 1.0
+      tracking_noise_wave_intensity:
+        type: track
+        label: "波の強さ"
+        default: 15.0
+        min: -50.0
+        max: 50.0
+        step: 0.001
+      tracking_noise_snow_intensity:
+        type: track
+        label: "スノーノイズ：強度"
+        default: 0.025
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      tracking_noise_snow_anisotropy:
+        type: track
+        label: "スノーノイズ：異方性"
+        default: 0.25
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      tracking_noise_noise_intensity:
+        type: track
+        label: "ノイズ強度"
+        default: 0.25
+        min: 0.0
+        max: 1.0
+        step: 0.001
+  ringing:
+    type: group
+    opened: false
+    label: "リンギング"
+    parameters:
+      ringing_enabled:
+        type: check
+        label: "有効"
+        default: true
+      ringing_frequency:
+        type: track
+        label: "周波数"
+        default: 0.45
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      ringing_power:
+        type: track
+        label: "パワー"
+        default: 4.0
+        min: 1.0
+        max: 10.0
+        step: 0.001
+      ringing_scale:
+        type: track
+        label: "強度"
+        default: 4.0
+        min: 0.0
+        max: 10.0
+        step: 0.001
+  luma_noise:
+    type: group
+    opened: false
+    label: "明度ノイズ"
+    parameters:
+      luma_noise_enabled:
+        type: check
+        label: "有効"
+        default: true
+      luma_noise_intensity:
+        type: track
+        label: "強度"
+        default: 0.01
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      luma_noise_frequency:
+        type: track
+        label: "周波数"
+        default: 0.5
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      luma_noise_detail:
+        type: track
+        label: "細かさ"
+        default: 1
+        min: 1
+        max: 5
+        step: 1.0
+  chroma_noise:
+    type: group
+    opened: false
+    label: "クロマノイズ"
+    parameters:
+      chroma_noise_enabled:
+        type: check
+        label: "有効"
+        default: true
+      chroma_noise_intensity:
+        type: track
+        label: "強度"
+        default: 0.1
+        min: 0.0
+        max: 1.0
+        step: 0.001
+      chroma_noise_frequency:
+        type: track
+        label: "周波数"
+        default: 0.05
+        min: 0.0
+        max: 0.5
+        step: 0.001
+      chroma_noise_detail:
+        type: track
+        label: "細かさ"
+        default: 2
+        min: 1
+        max: 5
+        step: 1.0
+  chroma_phase_error:
+    type: track
+    label: "クロマ位相ずれ"
+    default: 0.0
+    min: 0.0
+    max: 1.0
+    step: 0.001
+  chroma_phase_noise:
+    type: track
+    label: "クロマ位相ノイズ"
+    default: 0.001
+    min: 0.0
+    max: 1.0
+    step: 0.001
+  chroma_delay_horizontal:
+    type: track
+    label: "クロマ遅延(横)"
+    default: 0.0
+    min: -40.0
+    max: 40.0
+    step: 0.001
+  chroma_delay_vertical:
+    type: track
+    label: "クロマ遅延(縦)"
+    default: 0
+    min: -20
+    max: 20
+    step: 1.0
+  vhs_settings:
+    type: group
+    opened: false
+    label: "VHSエミュレーション"
+    parameters:
+      vhs_settings_enabled:
+        type: check
+        label: "有効"
+        default: true
+      vhs_tape_speed:
+        type: select
+        label: "テープ速度"
+        default: LP
+        items:
+          - label: "SP (標準)"
+            value: SP
+          - label: "LP (長時間)"
+            value: LP
+          - label: "EP (延長)"
+            value: EP
+          - label: "なし"
+            value: None
+      vhs_chroma_loss:
+        type: track
+        label: "クロマ欠落"
+        default: 0.025
+        min: 0.0
+        max: 1000.0
+        step: 0.001
+  vhs_sharpen:
+    type: group
+    opened: false
+    label: "VHS：シャープ"
+    parameters:
+      vhs_sharpen_enabled:
+        type: check
+        label: "有効"
+        default: true
+      vhs_sharpen_intensity:
+        type: track
+        label: "強度"
+        default: 0.25
+        min: 0.0
+        max: 5.0
+        step: 0.001
+      vhs_sharpen_frequency:
+        type: track
+        label: "周波数"
+        default: 1.0
+        min: 0.5
+        max: 4.0
+        step: 0.001
+  vhs_edge_wave:
+    type: group
+    opened: false
+    label: "VHS：エッジの揺れ"
+    parameters:
+      vhs_edge_wave_enabled:
+        type: check
+        label: "有効"
+        default: true
+      vhs_edge_wave_intensity:
+        type: track
+        label: "強度"
+        default: 0.5
+        min: 0.0
+        max: 20.0
+        step: 0.001
+      vhs_edge_wave_speed:
+        type: track
+        label: "速度"
+        default: 4.0
+        min: 0.0
+        max: 10.0
+        step: 0.001
+      vhs_edge_wave_frequency:
+        type: track
+        label: "周波数"
+        default: 0.05
+        min: 0.0
+        max: 0.5
+        step: 0.001
+      vhs_edge_wave_detail:
+        type: track
+        label: "細かさ"
+        default: 2
+        min: 1
+        max: 5
+        step: 1.0
+  chroma_vert_blend:
+    type: check
+    label: "クロマ縦ブレンド"
+    default: true
+  chroma_lowpass_out:
+    type: select
+    label: "出力クロマローパス"
+    default: Full
+    items:
+      - label: "フル"
+        value: Full
+      - label: "ライト"
+        value: Light
+      - label: "なし"
+        value: None
+  scale:
+    type: group
+    opened: false
+    label: "スケール"
+    parameters:
+      scale_enabled:
+        type: check
+        label: "有効"
+        default: true
+      horizontal_scale:
+        type: track
+        label: "横スケール"
+        default: 1.0
+        min: 0.125
+        max: 8.0
+        step: 0.001
+      vertical_scale:
+        type: track
+        label: "縦スケール"
+        default: 1.0
+        min: 0.125
+        max: 8.8
+        step: 0.001
+      scale_with_video_size:
+        type: check
+        label: "映像サイズに合わせる"
+        default: false
