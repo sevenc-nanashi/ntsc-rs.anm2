@@ -4,6 +4,8 @@
 --track@resize_height:高さ,144,1080,480,1
 --group:
 --PARAMS
+--filter
+--description:VHS-like effect, powered by ntsc-rs v{{ntscrs_version}}, written in Rust / v{{mod2_version}} / https://github.com/sevenc-nanashi/ntsc-rs.auf2
 
 local function to_json(v)
   if type(v) == "number" then
@@ -35,7 +37,11 @@ local params = {
 --CONVERTIONS
 }
 
-local ntsc = obj.module("ntsc")
+local ntsc = obj.module("ntsc-rs")
+local expected_version = "{{mod2_version}}"
+if ntsc.version() ~= expected_version then
+  error(string.format("ntsc module version mismatch: expected %s, got %s", expected_version, ntsc.version()))
+end
 
 local resized_width, resized_height
 if resize_input then

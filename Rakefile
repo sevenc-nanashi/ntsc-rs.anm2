@@ -2,9 +2,24 @@
 require "bundler/setup"
 require "fileutils"
 
+desc "ビルドします"
+task :build => [:build_script] do
+  sh "cargo build --release"
+end
+
+desc "リリースアセットを作成します"
+task :release => [:build] do
+  mkdir "release"
+  cp "./release.md", "./release/README.md"
+  cp "./lua/ntsc-rs.anm2", "./release/ntsc-rs.anm2"
+  cp "./target/release/ntscrs_anm2.dll", "./release/ntsc-rs.mod2"
+end
+
+desc "Luaスクリプトをビルドして./lua/ntsc-rs.anm2に出力します"
 task :build_script do
   require "yaml"
   require "json"
+  require "tomlrb"
 
   source = File.read("./lua/script.lua")
   parameters = YAML.load_file("./parameters.yml")
@@ -87,18 +102,28 @@ task :build_script do
     parameter_definitions << definition
   end
 
+  mod2_version = Tomlrb.load_file("./Cargo.toml")["package"]["version"]
+  cargo_lock = Tomlrb.load_file("./Cargo.lock")
+  ntscrs_lock = cargo_lock["package"].find { |pkg| pkg["name"] == "ntscrs" }
+  ntscrs_version =
+    "#{ntscrs_lock["version"]}+#{ntscrs_lock["source"].split("#").last[0..6]}"
+
   output =
-    source.sub("--PARAMS", parameter_definitions.join("\n")).sub(
-      "--CONVERTIONS",
-      convertions.map { |k, v| "[#{k.inspect}] = #{v}" }.join(",\n")
-    )
-  File.write("./lua/NTSC.anm2", output)
+    source
+      .sub("--PARAMS", parameter_definitions.join("\n"))
+      .sub(
+        "--CONVERTIONS",
+        convertions.map { |k, v| "[#{k.inspect}] = #{v}" }.join(",\n")
+      )
+      .gsub("{{mod2_version}}", mod2_version)
+      .gsub("{{ntscrs_version}}", ntscrs_version)
+  File.write("./lua/ntsc-rs.anm2", output)
   File.write("./lua/key_to_label.json", JSON.pretty_generate(key_to_label))
   File.write(
     "./lua/label_usage_counts.json",
     JSON.pretty_generate(label_usage_counts)
   )
-  puts "Build completed: ./lua/NTSC.anm2"
+  puts "Build completed: ./lua/ntsc-rs.anm2"
 end
 
 desc "./test_environment下にAviUtl2をセットアップし、debugビルドへのシンボリックリンクを作成します"
@@ -131,7 +156,7 @@ task :debug_setup do |task, args|
   target = "debug"
   FileUtils.mkdir_p(dest_dir) unless Dir.exist?(dest_dir)
   ln_s "#{__dir__}/target/#{target}/ntscrs_anm2.dll",
-       File.join(dest_dir, "ntsc.mod2"),
+       File.join(dest_dir, "ntsc-rs.mod2"),
        force: true
-  ln_s "#{__dir__}/lua/NTSC.anm2", File.join(dest_dir, "NTSC.anm2"), force: true
+  ln_s "#{__dir__}/lua/ntsc-rs.anm2", File.join(dest_dir, "ntsc-rs.anm2"), force: true
 end

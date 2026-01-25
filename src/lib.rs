@@ -14,7 +14,7 @@ impl aviutl2::module::ScriptModule for NtscModule {
     fn plugin_info(&self) -> aviutl2::module::ScriptModuleTable {
         aviutl2::module::ScriptModuleTable {
             information: format!(
-                "NTSC or VHS-like effect, powered by ntsc-rs, written in Rust / v{version} / https://github.com/sevenc-nanashi/ntsc-rs.auf2",
+                "VHS-like effect, powered by ntsc-rs, written in Rust / v{version} / https://github.com/sevenc-nanashi/ntsc-rs.auf2",
                 version = env!("CARGO_PKG_VERSION")
             ),
             functions: NtscModule::functions(),
@@ -24,6 +24,9 @@ impl aviutl2::module::ScriptModule for NtscModule {
 
 #[aviutl2::module::functions]
 impl NtscModule {
+    fn version() -> &'static str {
+        env!("CARGO_PKG_VERSION")
+    }
     fn process(
         &self,
         image: NonNull<u8>,

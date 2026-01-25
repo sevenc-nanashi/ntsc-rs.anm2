@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    racc (1.8.1)
     rubyzip (3.2.2)
     tomlrb (2.0.4)
 
@@ -8,10 +9,12 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  racc (~> 1.8)
   rubyzip (~> 3.2)
   tomlrb (~> 2.0)
 
 CHECKSUMS
+  racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
   tomlrb (2.0.4) sha256=262f77947ac3ac9b3366a0a5940ecd238300c553e2e14f22009e2afcd2181b99
 
