@@ -48,6 +48,7 @@ jobs:
       - name: Prepare release
         shell: bash
         run: |
+          bundle install
           bundle exec rake release
 
       - name: Commit version change
