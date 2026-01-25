@@ -14,8 +14,9 @@ task :release => [:build] do
   mkdir "release"
   cp "./release.md", "./release/README.md"
   Zip::File.open("./release/ntsc-rs.au2pkg.zip", create: true) do |zipfile|
-    zipfile.add("./Script/ntsc-rs.anm2", "./lua/ntsc-rs.anm2")
-    zipfile.add("./Script/ntsc-rs.mod2", "./target/release/ntscrs_anm2.dll")
+    zipfile.mkdir("Script")
+    zipfile.add("Script/ntsc-rs.anm2", "./lua/ntsc-rs.anm2")
+    zipfile.add("Script/ntsc-rs.mod2", "./target/release/ntscrs_anm2.dll")
   end
 end
 
