@@ -9,11 +9,14 @@ end
 desc "リリースアセットを作成します"
 task :release => [:build] do
   require "zip"
+  require "tomlrb"
 
+  version = Tomlrb.load_file("./Cargo.toml")["package"]["version"]
   rm_rf "release" if Dir.exist?("release")
   mkdir "release"
-  cp "./release.md", "./release/README.md"
-  Zip::File.open("./release/ntsc-rs.au2pkg.zip", create: true) do |zipfile|
+  release_md = File.read("./release.md")
+  File.write("./release/README.md", release_md.gsub("{{version}}", version))
+  Zip::File.open("./release/ntsc-rs-#{version}.au2pkg.zip", create: true) do |zipfile|
     zipfile.mkdir("Script")
     zipfile.add("Script/ntsc-rs.anm2", "./lua/ntsc-rs.anm2")
     zipfile.add("Script/ntsc-rs.mod2", "./target/release/ntscrs_anm2.dll")
