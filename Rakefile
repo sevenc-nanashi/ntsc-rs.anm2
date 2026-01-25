@@ -8,10 +8,15 @@ end
 
 desc "リリースアセットを作成します"
 task :release => [:build] do
+  require "zip"
+
+  rm_rf "release" if Dir.exist?("release")
   mkdir "release"
   cp "./release.md", "./release/README.md"
-  cp "./lua/ntsc-rs.anm2", "./release/ntsc-rs.anm2"
-  cp "./target/release/ntscrs_anm2.dll", "./release/ntsc-rs.mod2"
+  Zip::File.open("./release/ntsc-rs.au2pkg.zip", create: true) do |zipfile|
+    zipfile.add("./Script/ntsc-rs.anm2", "./lua/ntsc-rs.anm2")
+    zipfile.add("./Script/ntsc-rs.mod2", "./target/release/ntscrs_anm2.dll")
+  end
 end
 
 desc "Luaスクリプトをビルドして./lua/ntsc-rs.anm2に出力します"
