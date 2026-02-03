@@ -5,3 +5,8 @@
 ## インストール
 
 [Releases](https://github.com/sevenc-nanashi/ntsc-rs.anm2/releases/latest) から最新の `ntsc-rs.anm2` をダウンロードし、AviUtlの `plugins` フォルダに配置してください。
+
+## ライセンス
+
+MIT License で公開しています。詳細は[LICENSE](./LICENSE}を参照してください。
+親作品登録は [sm45904404](https://www.nicovideo.jp/watch/sm45904404) にお願いします。
