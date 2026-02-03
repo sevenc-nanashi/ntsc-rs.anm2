@@ -29,16 +29,16 @@ jobs:
       - name: Cache rust
         uses: Swatinem/rust-cache@v2
 
+      - name: Set up cargo-binstall
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-binstall
+
       - name: Set up mise
         uses: jdx/mise-action@v3
         with:
           install: true
           experimental: true
-
-      - name: Set up cargo-edit
-        uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-edit
 
       - name: Update Cargo.toml
         run: |
