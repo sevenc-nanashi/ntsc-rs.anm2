@@ -69,4 +69,4 @@ jobs:
           tag_name: ${{ github.event.inputs.name }}
           body_path: ./release/README.md
           files: |
-            ./release/ntsc-rs-anm2-v*.au2pkg.zip
+            ./release/ntsc-rs-v*.au2pkg.zip
