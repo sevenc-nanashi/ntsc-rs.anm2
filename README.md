@@ -8,5 +8,5 @@
 
 ## ライセンス
 
-MIT License で公開しています。詳細は[LICENSE](./LICENSE}を参照してください。
+MIT License で公開しています。詳細は[LICENSE](./LICENSE)を参照してください。
 親作品登録は [sm45904404](https://www.nicovideo.jp/watch/sm45904404) にお願いします。
