@@ -1,0 +1,31 @@
+#!schema: ./development/aviutl2.schema.json
+# 設定ファイルについては https://github.com/sevenc-nanashi/aviutl2-cli を参照してください。
+[project]
+name = "ntsc-rs.anm2"
+version = "0.0.0"
+
+[artifacts."ntsc-rs.anm2"]
+destination = "Script/ntsc-rs.anm2"
+source = "./lua/ntsc-rs.anm2"
+build = "rake build_script"
+
+[artifacts."English.ntsc-rs.aul2"]
+destination = "Language/English.ntsc-rs.aul2"
+source = "./target/English.ntsc-rs.aul2"
+build = "rake build_aul2"
+
+[artifacts."ntsc-rs.mod2"]
+destination = "Script/ntsc-rs.mod2"
+
+[artifacts."ntsc-rs.mod2".profiles.debug]
+source = "./target/debug/ntscrs_anm2.dll"
+build = "cargo build"
+
+[artifacts."ntsc-rs.mod2".profiles.release]
+source = "./target/release/ntscrs_anm2.dll"
+build = "cargo build --release"
+
+[development]
+aviutl2_version = "2.00beta31"
+
+[release]

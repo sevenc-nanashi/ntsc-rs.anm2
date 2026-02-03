@@ -1,2 +1,3 @@
 [tools]
+"github:sevenc-nanashi/aviutl2-cli" = "latest"
 ruby = "4"

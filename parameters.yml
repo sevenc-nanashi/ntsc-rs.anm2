@@ -2,6 +2,7 @@ parameters:
   seed:
     type: track
     label: "シード"
+    english_label: "Random seed"
     default: 0
     min: 0
     max: 10000
@@ -9,54 +10,73 @@ parameters:
   field:
     type: select
     label: "フィールド"
+    english_label: "Use field"
     default: InterleavedUpper
     items:
       - label: "交互"
+        english_label: "Alternating"
         value: Alternating
       - label: "上位のみ"
+        english_label: "Upper only"
         value: Upper
       - label: "下位のみ"
+        english_label: "Lower only"
         value: Lower
       - label: "両方"
+        english_label: "Both"
         value: Both
       - label: "交互：上位から"
+        english_label: "Interleaved (upper first)"
         value: InterleavedUpper
       - label: "交互：下位から"
+        english_label: "Interleaved (lower first)"
         value: InterleavedLower
   filter_type:
     type: select
     label: "ローパスフィルター"
+    english_label: "Lowpass filter type"
     default: Butterworth
     items:
       - label: "Constant K"
+        english_label: "Constant K (blurry)"
         value: ConstantK
       - label: "Butterworth"
+        english_label: "Butterworth (sharper)"
         value: Butterworth
   input_luma_filter:
     type: select
     label: "入力輝度フィルター"
+    english_label: "Input luma filter"
     default: Notch
     items:
       - label: "ノッチ"
+        english_label: "Notch"
         value: Notch
       - label: "ボックス"
+        english_label: "Box"
         value: Box
       - label: "なし"
+        english_label: "None"
         value: None
   chroma_lowpass_in:
     type: select
     label: "入力クロマローパス"
+    english_label: "Chroma low-pass in"
     default: Full
     items:
       - label: "フル"
+        english_label: "Full"
         value: Full
       - label: "ライト"
+        english_label: "Light"
         value: Light
       - label: "なし"
+        english_label: "None"
         value: None
   composite_sharpening:
     type: track
     label: "コンポジット信号シャープ"
+    english_label: "Composite signal sharpening"
     default: 1.0
     min: -1.0
     max: 2.0
@@ -65,14 +85,17 @@ parameters:
     type: group
     opened: false
     label: "コンポジットノイズ"
+    english_label: "Composite signal noise"
     parameters:
       composite_noise_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       composite_noise_intensity:
         type: track
         label: "強度"
+        english_label: "Intensity"
         default: 0.05
         min: 0.0
         max: 1.0
@@ -80,6 +103,7 @@ parameters:
       composite_noise_frequency:
         type: track
         label: "周波数"
+        english_label: "Frequency"
         default: 0.5
         min: 0.0
         max: 1.0
@@ -87,6 +111,7 @@ parameters:
       composite_noise_detail:
         type: track
         label: "細かさ"
+        english_label: "Detail"
         default: 1
         min: 1
         max: 5
@@ -94,6 +119,7 @@ parameters:
   snow:
     type: track
     label: "スノーノイズ"
+    english_label: "Snow"
     default: 0.025
     min: 0.0
     max: 10000.0
@@ -101,6 +127,7 @@ parameters:
   snow_anisotropy:
     type: track
     label: "スノーノイズ：異方性"
+    english_label: "Snow anisotropy"
     default: 0.5
     min: 0.0
     max: 1.0
@@ -108,19 +135,25 @@ parameters:
   video_scanline_phase_shift:
     type: select
     label: "走査線位相シフト"
+    english_label: "Scanline phase shift"
     default: Degrees180
     items:
       - label: "0度"
+        english_label: "0 degrees"
         value: Degrees0
       - label: "90度"
+        english_label: "90 degrees"
         value: Degrees90
       - label: "180度"
+        english_label: "180 degrees"
         value: Degrees180
       - label: "270度"
+        english_label: "270 degrees"
         value: Degrees270
   video_scanline_phase_shift_offset:
     type: track
     label: "走査線位相シフトオフセット"
+    english_label: "Scanline phase shift offset"
     default: 0
     min: 0
     max: 3
@@ -128,19 +161,25 @@ parameters:
   chroma_demodulation_filter:
     type: select
     label: "クロマ復調フィルター"
+    english_label: "Chroma demodulation filter"
     default: Notch
     items:
       - label: "ボックス"
+        english_label: "Box"
         value: Box
       - label: "ノッチ"
+        english_label: "Notch"
         value: Notch
       - label: "1ラインコム"
+        english_label: "1-line comb"
         value: OneLineComb
       - label: "2ラインコム"
+        english_label: "2-line comb"
         value: TwoLineComb
   luma_smear:
     type: track
     label: "明度のにじみ"
+    english_label: "Luma smear"
     default: 0.5
     min: 0.0
     max: 1.0
@@ -149,14 +188,17 @@ parameters:
     type: group
     opened: false
     label: "ヘッド切り替え"
+    english_label: "Head switching"
     parameters:
       head_switching_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       head_switching_height:
         type: track
         label: "高さ"
+        english_label: "Height"
         default: 8
         min: 0
         max: 24
@@ -164,6 +206,7 @@ parameters:
       head_switching_offset:
         type: track
         label: "オフセット"
+        english_label: "Offset"
         default: 3
         min: 0
         max: 24
@@ -171,6 +214,7 @@ parameters:
       head_switching_horizontal_shift:
         type: track
         label: "水平シフト"
+        english_label: "Horizontal shift"
         default: 72.0
         min: -100.0
         max: 100.0
@@ -179,14 +223,17 @@ parameters:
     type: group
     opened: false
     label: "ヘッド切り替え：途中開始"
+    english_label: "Start mid-line"
     parameters:
       head_switching_mid_line_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       head_switching_mid_line_position:
         type: track
         label: "位置"
+        english_label: "Position"
         default: 0.95
         min: 0.0
         max: 1.0
@@ -194,6 +241,7 @@ parameters:
       head_switching_mid_line_jitter:
         type: track
         label: "揺れ"
+        english_label: "Jitter"
         default: 0.03
         min: 0.0
         max: 1.0
@@ -202,14 +250,17 @@ parameters:
     type: group
     opened: false
     label: "トラッキングノイズ"
+    english_label: "Tracking noise"
     parameters:
       tracking_noise_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       tracking_noise_height:
         type: track
         label: "高さ"
+        english_label: "Height"
         default: 12
         min: 0
         max: 120
@@ -217,6 +268,7 @@ parameters:
       tracking_noise_wave_intensity:
         type: track
         label: "波の強さ"
+        english_label: "Wave intensity"
         default: 15.0
         min: -50.0
         max: 50.0
@@ -224,6 +276,7 @@ parameters:
       tracking_noise_snow_intensity:
         type: track
         label: "スノーノイズ：強度"
+        english_label: "Snow intensity"
         default: 0.025
         min: 0.0
         max: 1.0
@@ -231,6 +284,7 @@ parameters:
       tracking_noise_snow_anisotropy:
         type: track
         label: "スノーノイズ：異方性"
+        english_label: "Snow anisotropy"
         default: 0.25
         min: 0.0
         max: 1.0
@@ -238,6 +292,7 @@ parameters:
       tracking_noise_noise_intensity:
         type: track
         label: "ノイズ強度"
+        english_label: "Noise intensity"
         default: 0.25
         min: 0.0
         max: 1.0
@@ -246,14 +301,17 @@ parameters:
     type: group
     opened: false
     label: "リンギング"
+    english_label: "Ringing"
     parameters:
       ringing_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       ringing_frequency:
         type: track
         label: "周波数"
+        english_label: "Frequency"
         default: 0.45
         min: 0.0
         max: 1.0
@@ -261,6 +319,7 @@ parameters:
       ringing_power:
         type: track
         label: "パワー"
+        english_label: "Power"
         default: 4.0
         min: 1.0
         max: 10.0
@@ -268,6 +327,7 @@ parameters:
       ringing_scale:
         type: track
         label: "強度"
+        english_label: "Scale"
         default: 4.0
         min: 0.0
         max: 10.0
@@ -276,14 +336,17 @@ parameters:
     type: group
     opened: false
     label: "明度ノイズ"
+    english_label: "Luma noise"
     parameters:
       luma_noise_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       luma_noise_intensity:
         type: track
         label: "強度"
+        english_label: "Intensity"
         default: 0.01
         min: 0.0
         max: 1.0
@@ -291,6 +354,7 @@ parameters:
       luma_noise_frequency:
         type: track
         label: "周波数"
+        english_label: "Frequency"
         default: 0.5
         min: 0.0
         max: 1.0
@@ -298,6 +362,7 @@ parameters:
       luma_noise_detail:
         type: track
         label: "細かさ"
+        english_label: "Detail"
         default: 1
         min: 1
         max: 5
@@ -306,14 +371,17 @@ parameters:
     type: group
     opened: false
     label: "クロマノイズ"
+    english_label: "Chroma noise"
     parameters:
       chroma_noise_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       chroma_noise_intensity:
         type: track
         label: "強度"
+        english_label: "Intensity"
         default: 0.1
         min: 0.0
         max: 1.0
@@ -321,6 +389,7 @@ parameters:
       chroma_noise_frequency:
         type: track
         label: "周波数"
+        english_label: "Frequency"
         default: 0.05
         min: 0.0
         max: 0.5
@@ -328,6 +397,7 @@ parameters:
       chroma_noise_detail:
         type: track
         label: "細かさ"
+        english_label: "Detail"
         default: 2
         min: 1
         max: 5
@@ -335,6 +405,7 @@ parameters:
   chroma_phase_error:
     type: track
     label: "クロマ位相ずれ"
+    english_label: "Chroma phase error"
     default: 0.0
     min: 0.0
     max: 1.0
@@ -342,6 +413,7 @@ parameters:
   chroma_phase_noise:
     type: track
     label: "クロマ位相ノイズ"
+    english_label: "Chroma phase noise"
     default: 0.001
     min: 0.0
     max: 1.0
@@ -349,6 +421,7 @@ parameters:
   chroma_delay_horizontal:
     type: track
     label: "クロマ遅延(横)"
+    english_label: "Chroma delay (horizontal)"
     default: 0.0
     min: -40.0
     max: 40.0
@@ -356,6 +429,7 @@ parameters:
   chroma_delay_vertical:
     type: track
     label: "クロマ遅延(縦)"
+    english_label: "Chroma delay (vertical)"
     default: 0
     min: -20
     max: 20
@@ -364,27 +438,35 @@ parameters:
     type: group
     opened: false
     label: "VHSエミュレーション"
+    english_label: "VHS emulation"
     parameters:
       vhs_settings_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       vhs_tape_speed:
         type: select
         label: "テープ速度"
+        english_label: "Tape speed"
         default: LP
         items:
           - label: "SP (標準)"
+            english_label: "SP (Standard Play)"
             value: SP
           - label: "LP (長時間)"
+            english_label: "LP (Long Play)"
             value: LP
           - label: "EP (延長)"
+            english_label: "EP (Extended Play)"
             value: EP
           - label: "なし"
+            english_label: "None"
             value: None
       vhs_chroma_loss:
         type: track
         label: "クロマ欠落"
+        english_label: "Chroma loss"
         default: 0.025
         min: 0.0
         max: 1000.0
@@ -393,14 +475,17 @@ parameters:
     type: group
     opened: false
     label: "VHS：シャープ"
+    english_label: "Sharpen"
     parameters:
       vhs_sharpen_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       vhs_sharpen_intensity:
         type: track
         label: "強度"
+        english_label: "Intensity"
         default: 0.25
         min: 0.0
         max: 5.0
@@ -408,6 +493,7 @@ parameters:
       vhs_sharpen_frequency:
         type: track
         label: "周波数"
+        english_label: "Frequency"
         default: 1.0
         min: 0.5
         max: 4.0
@@ -416,14 +502,17 @@ parameters:
     type: group
     opened: false
     label: "VHS：エッジの揺れ"
+    english_label: "Edge wave"
     parameters:
       vhs_edge_wave_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       vhs_edge_wave_intensity:
         type: track
         label: "強度"
+        english_label: "Intensity"
         default: 0.5
         min: 0.0
         max: 20.0
@@ -431,6 +520,7 @@ parameters:
       vhs_edge_wave_speed:
         type: track
         label: "速度"
+        english_label: "Speed"
         default: 4.0
         min: 0.0
         max: 10.0
@@ -438,6 +528,7 @@ parameters:
       vhs_edge_wave_frequency:
         type: track
         label: "周波数"
+        english_label: "Frequency"
         default: 0.05
         min: 0.0
         max: 0.5
@@ -445,6 +536,7 @@ parameters:
       vhs_edge_wave_detail:
         type: track
         label: "細かさ"
+        english_label: "Detail"
         default: 2
         min: 1
         max: 5
@@ -452,30 +544,38 @@ parameters:
   chroma_vert_blend:
     type: check
     label: "クロマ縦ブレンド"
+    english_label: "Vertically blend chroma"
     default: true
   chroma_lowpass_out:
     type: select
     label: "出力クロマローパス"
+    english_label: "Chroma low-pass out"
     default: Full
     items:
       - label: "フル"
+        english_label: "Full"
         value: Full
       - label: "ライト"
+        english_label: "Light"
         value: Light
       - label: "なし"
+        english_label: "None"
         value: None
   scale:
     type: group
     opened: false
     label: "スケール"
+    english_label: "Scale"
     parameters:
       scale_enabled:
         type: check
         label: "有効"
+        english_label: "Enabled"
         default: true
       horizontal_scale:
         type: track
         label: "横スケール"
+        english_label: "Horizontal scale"
         default: 1.0
         min: 0.125
         max: 8.0
@@ -483,6 +583,7 @@ parameters:
       vertical_scale:
         type: track
         label: "縦スケール"
+        english_label: "Vertical scale"
         default: 1.0
         min: 0.125
         max: 8.8
@@ -490,4 +591,5 @@ parameters:
       scale_with_video_size:
         type: check
         label: "映像サイズに合わせる"
+        english_label: "Scale with video size"
         default: false

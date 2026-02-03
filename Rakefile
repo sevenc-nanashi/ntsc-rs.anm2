@@ -134,6 +134,49 @@ task :build_script do
   puts "Build completed: ./lua/ntsc-rs.anm2"
 end
 
+desc "aul2をビルドします"
+task :build_aul2 do
+  require "json"
+  require "yaml"
+
+  translations = {}
+  paramters = YAML.load_file("./parameters.yml")["parameters"]
+  key_to_label = JSON.load_file("./lua/key_to_label.json")
+  paramters.each do |key, value|
+    translations[key_to_label[key]] = value["english_label"]
+    if value["type"] == "select"
+      value["items"].each do |item|
+        translations[item["label"]] = item["english_label"]
+      end
+    end
+    if value["type"] == "group"
+      value["parameters"].each do |subkey, subvalue|
+        translations[key_to_label[subkey]] = subvalue["english_label"]
+        if subvalue["type"] == "select"
+          subvalue["items"].each do |item|
+            translations[item["label"]] = item["english_label"]
+          end
+        end
+      end
+    end
+  end
+
+  File.open("./target/English.ntsc-rs.aul2", "w") do |file|
+    file.puts <<~EOS
+    ; parameters.ymlとRakefileから自動生成。
+    ; 手動で編集しないこと。
+    [ntsc-rs]
+
+    入力のリサイズ=Resize Input
+    有効=Enabled
+    高さ=Height
+    EOS
+    translations.each do |jp, en|
+      file.puts "#{jp}=#{en}"
+    end
+  end
+end
+
 desc "./test_environment下にAviUtl2をセットアップし、debugビルドへのシンボリックリンクを作成します"
 task :debug_setup do |task, args|
   require "zip"

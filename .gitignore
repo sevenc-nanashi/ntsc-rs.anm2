@@ -3,3 +3,7 @@
 /test_environment
 /lua/ntsc-rs.anm2
 /release
+
+# AviUtl2 CLI
+/development
+/release
