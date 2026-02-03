@@ -1,4 +1,4 @@
-#!schema: ./development/aviutl2.schema.json
+#!schema: ./.aviutl2-cli/development/aviutl2.schema.json
 # 設定ファイルについては https://github.com/sevenc-nanashi/aviutl2-cli を参照してください。
 [project]
 name = "ntsc-rs-anm2"
@@ -24,6 +24,14 @@ build = "cargo build"
 [artifacts."ntsc-rs.mod2".profiles.release]
 source = "./target/release/ntscrs_anm2.dll"
 build = "cargo build --release"
+
+[artifacts."English.aul2"]
+enabled = false
+source = "https://raw.githubusercontent.com/aviutl2/aviutl2_community_translation/refs/heads/main/locales/community_en.aul2"
+destination = "Language/English.aul2"
+
+[artifacts."English.aul2".profiles.debug]
+enabled = true
 
 [development]
 aviutl2_version = "2.00beta31"
