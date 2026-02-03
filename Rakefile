@@ -13,6 +13,7 @@ task :release => [:build] do
 
   version = Tomlrb.load_file("./Cargo.toml")["package"]["version"]
   release_md = File.read("./release.md")
+  mkdir_p "./release"
   File.write("./release/README.md", release_md.gsub("{{version}}", version))
 
   sh "au2 release --set-version #{version}"
