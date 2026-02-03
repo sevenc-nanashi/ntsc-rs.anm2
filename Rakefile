@@ -34,9 +34,6 @@ task :build_script do
   key_to_label = JSON.load_file("./lua/key_to_label.json")
   label_usage_counts = JSON.load_file("./lua/label_usage_counts.json")
   label_usage_counts.default = 0
-  label_usage_counts["入力リサイズ"] += 1
-  label_usage_counts["有効"] += 1
-  label_usage_counts["高さ"] += 1
   flat_parameters =
     parameters["parameters"].flat_map do |key, value|
       if value["type"] == "group"

@@ -1,7 +1,7 @@
 #!schema: ./development/aviutl2.schema.json
 # 設定ファイルについては https://github.com/sevenc-nanashi/aviutl2-cli を参照してください。
 [project]
-name = "ntsc-rs.anm2"
+name = "ntsc-rs-anm2"
 version = "0.0.0"
 
 [artifacts."ntsc-rs.anm2"]
