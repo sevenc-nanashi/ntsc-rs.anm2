@@ -1,5 +1,7 @@
 # ntsc-rs.anm2
 
+[![AviUtl2 Catalog](https://img.shields.io/endpoint?url=https%3A%2F%2Faviutl2-catalog-badge.sevenc7c.workers.dev%2Fapi%2Fbadge%2Fsevenc-nanashi.ntsc-rs)](https://aviutl2-catalog-badge.sevenc7c.workers.dev/package/sevenc-nanashi.ntsc-rs)
+
 [ntsc-rs](https://ntsc.rs) のAviUtl2移植。
 
 ## インストール
