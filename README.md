@@ -6,7 +6,7 @@
 
 ## インストール
 
-[Releases](https://github.com/sevenc-nanashi/ntsc-rs.anm2/releases/latest) から最新の `ntsc-rs.anm2` をダウンロードし、AviUtlの `plugins` フォルダに配置してください。
+[Releases](https://github.com/sevenc-nanashi/ntsc-rs.anm2/releases/latest) から最新のau2pkgをダウンロードし、AviUtl2のプレビューにドラッグ&ドロップしてください。
 
 ## ライセンス
 
