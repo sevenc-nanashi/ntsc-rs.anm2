@@ -6,9 +6,14 @@ name = "ntsc-rs.anm2"
 version = "0.0.0"
 
 [artifacts."ntsc-rs.anm2"]
-destination = "Script/ntsc-rs.anm2"
+destination = "Script/ntsc-rs.anm2.anm2"
 source = "./lua/ntsc-rs.anm2"
 build = "rake build_script"
+
+[artifacts."ntsc-rs_old.anm2"]
+destination = "Script/ntsc-rs.anm2"
+source = "./lua/ntsc-rs_old.anm2"
+build = "rake build_old_script"
 
 [artifacts."English.ntsc-rs.aul2"]
 destination = "Language/English.ntsc-rs.aul2"
@@ -44,7 +49,7 @@ build = "cargo about generate about.hbs -o release/package.txt"
 enabled = true
 
 [development]
-aviutl2_version = "2.00beta31"
+aviutl2_version = "latest"
 
 [release]
 package_template = "./release/package.txt"

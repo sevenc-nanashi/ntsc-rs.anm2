@@ -2,6 +2,7 @@
 
 /test_environment
 /lua/ntsc-rs.anm2
+/lua/ntsc-rs_old.anm2
 /release
 
 # AviUtl2 CLI

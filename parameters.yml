@@ -1,4 +1,16 @@
 parameters:
+  alpha_mode:
+    type: select
+    label: "アルファチャンネル"
+    english_label: "Alpha channel"
+    default: Multiply
+    items:
+      - label: "RGBにアルファを乗算"
+        english_label: "Multiply RGB by alpha"
+        value: Multiply
+      - label: "アルファチャンネルに対してエフェクトを適用"
+        english_label: "Apply effect to alpha channel"
+        value: Grayscale
   seed:
     type: track
     label: "シード"

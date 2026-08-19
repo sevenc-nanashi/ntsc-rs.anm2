@@ -71,5 +71,6 @@
   "scale_enabled": "有効​​​​​​​​​​​​​​​​​​​​​​​​",
   "horizontal_scale": "横スケール​",
   "vertical_scale": "縦スケール​",
-  "scale_with_video_size": "映像サイズに合わせる​"
+  "scale_with_video_size": "映像サイズに合わせる​",
+  "alpha_mode": "アルファチャンネル"
 }

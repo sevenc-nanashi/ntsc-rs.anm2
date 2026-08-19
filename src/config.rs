@@ -1,6 +1,16 @@
 use ntscrs::settings::standard as ntsc_settings;
 use serde::Deserialize;
 
+#[derive(
+    Debug, Clone, Copy, PartialEq, Eq, Deserialize, aviutl2::filter::FilterConfigSelectItems,
+)]
+pub enum AlphaMode {
+    #[item(name = "RGBにアルファを乗算")]
+    Multiply,
+    #[item(name = "グレースケールとして適用")]
+    Grayscale,
+}
+
 #[derive(Debug, Clone, Copy, Deserialize, aviutl2::filter::FilterConfigSelectItems)]
 pub enum Field {
     #[item(name = "交互")]
@@ -162,6 +172,7 @@ impl From<VhsTapeSpeed> for ntsc_settings::VHSTapeSpeed {
 
 #[derive(Debug, Deserialize)]
 pub struct ParamsJson {
+    pub alpha_mode: AlphaMode,
     pub seed: i32,
     pub field: Field,
     pub filter_type: FilterType,
