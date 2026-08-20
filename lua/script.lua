@@ -43,6 +43,20 @@ if ntsc.version() ~= expected_version then
   error(string.format("ntsc module version mismatch: expected %s, got %s", expected_version, ntsc.version()))
 end
 
+local original_ox = obj.ox
+local original_oy = obj.oy
+local original_oz = obj.oz
+local original_rx = obj.rx
+local original_ry = obj.ry
+local original_rz = obj.rz
+local original_cx = obj.cx
+local original_cy = obj.cy
+local original_cz = obj.cz
+local original_sx = obj.sx
+local original_sy = obj.sy
+local original_sz = obj.sz
+local original_alpha = obj.alpha
+
 local resized_width, resized_height
 if resize_input then
   resized_width = math.floor(obj.w * (resize_height / obj.h) + 0.5)
@@ -77,5 +91,19 @@ obj.drawpoly(
   -original_w / 2,  original_h / 2, 0
 )
 obj.copybuffer("object", "tempbuffer")
+
+obj.ox = original_ox
+obj.oy = original_oy
+obj.oz = original_oz
+obj.rx = original_rx
+obj.ry = original_ry
+obj.rz = original_rz
+obj.cx = original_cx
+obj.cy = original_cy
+obj.cz = original_cz
+obj.sx = original_sx
+obj.sy = original_sy
+obj.sz = original_sz
+obj.alpha = original_alpha
 
 -- vim: set ft=lua :
